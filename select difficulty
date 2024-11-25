@@ -1,0 +1,123 @@
+#include "FEHLCD.h"
+
+bool Easy();
+
+bool Medium();
+
+bool Hard();
+
+char Select_difficulty();
+
+int main()
+{
+    //create variable to save as the difficulty selected.
+    char difficulty;
+    //call the function to get what the user selects and store that in the variable difficulty to user later
+    difficulty=Select_difficulty();
+    
+
+    while (1) {
+        LCD.Update();
+        // Never end
+    }
+    return 0;
+}
+//create function that checks if it is touched within the bounds of the easy button
+bool Easy()
+    {
+        float x_pos, y_pos, x_trash, y_trash;
+        //waiting for the touch
+        while(!LCD.Touch(&x_pos,&y_pos)){}
+        //when it is touched
+        while(LCD.Touch(&x_trash,&y_trash)){}
+        //If it is touched within the bounds of the easy button return true
+        if(x_pos > 20 && x_pos < 80 && y_pos > 95 && y_pos < 120)
+        {
+           return true; 
+        }
+        //otherwise return false
+        return false;
+    }
+    //create a function that checks if the screen is touched within the bounds of the medium button
+bool Medium()
+    {
+        float x_pos, y_pos, x_trash, y_trash;
+
+        //waiting for touch
+        while(!LCD.Touch(&x_pos,&y_pos)){}
+        //while it is being touched
+        while(LCD.Touch(&x_trash,&y_trash)){}
+        //check to see that is in the bounds of the medium button and return true if it is
+        if(x_pos > 118 && x_pos < 198 && y_pos > 95 && y_pos < 120)
+        {
+           return true; 
+        }
+        //otherwise return false
+        return false;
+    }
+    //create a function that checks if the screen is touched within the bounds of the hard button
+bool Hard()
+    {
+        float x_pos, y_pos, x_trash, y_trash;
+
+        //waiting for the touch
+        while(!LCD.Touch(&x_pos,&y_pos)){}
+        //when it is touched
+        while(LCD.Touch(&x_trash,&y_trash)){}
+        //check to see if it is within the bounds of the hard button and return true if true
+        if(x_pos > 235 && x_pos < 295 && y_pos > 95 && y_pos < 120)
+        {
+           return true; 
+        }
+        //otherwise return false
+        return false;
+    }
+    //create function that stores the selected difficuly in a character variable. 
+char Select_difficulty()
+{
+     //set background color
+    LCD.SetBackgroundColor(BEIGE);
+    LCD.Clear();
+    //promt the user to select their difficulty
+    LCD.SetFontColor(BLACK);
+    LCD.WriteRC("Select Your Difficulty",1,1);
+    //create button for easy
+    LCD.SetFontColor(GREEN);
+    LCD.DrawRectangle(20,95,60,25);
+    LCD.WriteRC("Easy",6,2);
+    //create button for medium
+    LCD.SetFontColor(YELLOW);
+    LCD.DrawRectangle(118,95,80,25);
+    LCD.WriteRC("Medium",6,10);
+    //create button for hard
+    LCD.SetFontColor(RED);
+    LCD.DrawRectangle(235,95,60,25);
+    LCD.WriteRC("Hard", 6,20);
+
+    //call the function easy to see if the user selected easy as their option
+    //it will return true if they touched within the easy button 
+    if(Easy()==true)
+    {   //check by setting the screen to green and displaying the messege easy selected
+        LCD.SetBackgroundColor(GREEN);
+        LCD.Clear();
+        LCD.WriteLine("Easy Selected!");
+        return 'E';
+    }
+    //call medium to check the same thing
+    else if(Medium()==true)
+    {
+        LCD.SetBackgroundColor(YELLOW);
+        LCD.Clear();
+        LCD.WriteLine("Medium Selected!");
+        return 'M';
+    }
+    
+    //call hard to check the same thing
+    else if(Hard()==true)
+    {
+        LCD.SetBackgroundColor(RED);
+        LCD.Clear();
+        LCD.WriteLine("Hard Selected!");
+        return 'H'; 
+    }
+}
