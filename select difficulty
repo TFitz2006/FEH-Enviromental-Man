@@ -1,10 +1,5 @@
 #include "FEHLCD.h"
 
-bool Easy();
-
-bool Medium();
-
-bool Hard();
 
 char Select_difficulty();
 
@@ -22,61 +17,14 @@ int main()
     }
     return 0;
 }
-//create function that checks if it is touched within the bounds of the easy button
-bool Easy()
-    {
-        float x_pos, y_pos, x_trash, y_trash;
-        //waiting for the touch
-        while(!LCD.Touch(&x_pos,&y_pos)){}
-        //when it is touched
-        while(LCD.Touch(&x_trash,&y_trash)){}
-        //If it is touched within the bounds of the easy button return true
-        if(x_pos > 20 && x_pos < 80 && y_pos > 95 && y_pos < 120)
-        {
-           return true; 
-        }
-        //otherwise return false
-        return false;
-    }
-    //create a function that checks if the screen is touched within the bounds of the medium button
-bool Medium()
-    {
-        float x_pos, y_pos, x_trash, y_trash;
-
-        //waiting for touch
-        while(!LCD.Touch(&x_pos,&y_pos)){}
-        //while it is being touched
-        while(LCD.Touch(&x_trash,&y_trash)){}
-        //check to see that is in the bounds of the medium button and return true if it is
-        if(x_pos > 118 && x_pos < 198 && y_pos > 95 && y_pos < 120)
-        {
-           return true; 
-        }
-        //otherwise return false
-        return false;
-    }
-    //create a function that checks if the screen is touched within the bounds of the hard button
-bool Hard()
-    {
-        float x_pos, y_pos, x_trash, y_trash;
-
-        //waiting for the touch
-        while(!LCD.Touch(&x_pos,&y_pos)){}
-        //when it is touched
-        while(LCD.Touch(&x_trash,&y_trash)){}
-        //check to see if it is within the bounds of the hard button and return true if true
-        if(x_pos > 235 && x_pos < 295 && y_pos > 95 && y_pos < 120)
-        {
-           return true; 
-        }
-        //otherwise return false
-        return false;
-    }
-    //create function that stores the selected difficuly in a character variable. 
+//create function that checks if it is touched within the bounds of the easy
 char Select_difficulty()
 {
+     float x_pos, y_pos, x_trash, y_trash;
+
+
      //set background color
-    LCD.SetBackgroundColor(BEIGE);
+    LCD.SetBackgroundColor(WHEAT);
     LCD.Clear();
     //promt the user to select their difficulty
     LCD.SetFontColor(BLACK);
@@ -94,9 +42,14 @@ char Select_difficulty()
     LCD.DrawRectangle(235,95,60,25);
     LCD.WriteRC("Hard", 6,20);
 
+    //waiting for the touch
+        while(!LCD.Touch(&x_pos,&y_pos)){}
+        //when it is touched
+        while(LCD.Touch(&x_trash,&y_trash)){}
+
     //call the function easy to see if the user selected easy as their option
     //it will return true if they touched within the easy button 
-    if(Easy()==true)
+    if(x_pos > 20 && x_pos < 80 && y_pos > 95 && y_pos < 120)
     {   //check by setting the screen to green and displaying the messege easy selected
         LCD.SetBackgroundColor(GREEN);
         LCD.Clear();
@@ -104,7 +57,7 @@ char Select_difficulty()
         return 'E';
     }
     //call medium to check the same thing
-    else if(Medium()==true)
+    else if(x_pos > 118 && x_pos < 198 && y_pos > 95 && y_pos < 120)
     {
         LCD.SetBackgroundColor(YELLOW);
         LCD.Clear();
@@ -113,7 +66,7 @@ char Select_difficulty()
     }
     
     //call hard to check the same thing
-    else if(Hard()==true)
+    else if(x_pos > 235 && x_pos < 295 && y_pos > 95 && y_pos < 120)
     {
         LCD.SetBackgroundColor(RED);
         LCD.Clear();
