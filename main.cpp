@@ -36,11 +36,18 @@ void easyModeGame(FEHImage badguy, FEHImage fire1, FEHImage fire2, FEHImage town
 
 void menuPage();
 
+char Select_difficulty();
+
 int main() {
    FEHImage badguy,fire1, fire2, town,town2;
 
     menuPage();
-   easyModeGame(badguy,fire1, fire2, town,town2);
+    if(Select_difficulty()=='E')
+    {easyModeGame(badguy,fire1, fire2, town,town2);}
+   else if(Select_difficulty()=='M')
+   {MediumModeGame();}
+    else if(Select_difficulty()=='H')
+    {HardModeGame();}
 
 }
 
@@ -277,6 +284,54 @@ void spawnfire(FEHImage fire1, FEHImage fire2, int fireNum){
 
 
 
+}
+
+char Select_difficulty()
+{
+     float x_pos, y_pos, x_trash, y_trash;
+
+
+     //set background color
+    LCD.SetBackgroundColor(WHEAT);
+    LCD.Clear();
+    //promt the user to select their difficulty
+    LCD.SetFontColor(BLACK);
+    LCD.WriteRC("Select Your Difficulty",1,1);
+    //create button for easy
+    LCD.SetFontColor(GREEN);
+    LCD.DrawRectangle(20,95,60,25);
+    LCD.WriteRC("Easy",6,2);
+    //create button for medium
+    LCD.SetFontColor(YELLOW);
+    LCD.DrawRectangle(118,95,80,25);
+    LCD.WriteRC("Medium",6,10);
+    //create button for hard
+    LCD.SetFontColor(RED);
+    LCD.DrawRectangle(235,95,60,25);
+    LCD.WriteRC("Hard", 6,20);
+
+    //waiting for the touch
+        while(!LCD.Touch(&x_pos,&y_pos)){}
+        //when it is touched
+        while(LCD.Touch(&x_trash,&y_trash)){}
+
+    //call the function easy to see if the user selected easy as their option
+    //it will return true if they touched within the easy button 
+    if(x_pos > 20 && x_pos < 80 && y_pos > 95 && y_pos < 120)
+    {   
+        return 'E';
+    }
+    //call medium to check the same thing
+    else if(x_pos > 118 && x_pos < 198 && y_pos > 95 && y_pos < 120)
+    {
+        return 'M';
+    }
+    
+    //call hard to check the same thing
+    else if(x_pos > 235 && x_pos < 295 && y_pos > 95 && y_pos < 120)
+    {
+        return 'H'; 
+    }
 }
 
 void easyModeGame(FEHImage badguy, FEHImage fire1, FEHImage fire2, FEHImage town, FEHImage town2){
