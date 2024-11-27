@@ -1,0 +1,120 @@
+void level_medium()
+{
+    //create the necessary variables that are used within the function
+    FEHImage badguy, fire1, fire2, forest_2, other_image, winter_forest;
+    int timeTracker, score=0, timer, fire_counter=0;
+
+    //open all of the necessary images
+    winter_forest.Open("winter_forest.png");
+    forest_2.Open("forest_2.png");
+    badguy.Open("theOfficialBadGuy.png");
+    fire1.Open("fire1.png");
+    fire2.Open("fire2.png");
+
+    //set the background color and display text that sets the scene
+    LCD.SetBackgroundColor(WHEAT);
+    LCD.Clear();
+    LCD.SetFontColor(BLACK);
+    LCD.Write("You are now in the        enchanted forest! The     trees here are thousands  of years old, you need to protect them before they  all die!");
+    LCD.Update();
+    Sleep(5.0);
+
+    //draw the correct board with the background and the badguy along with text from the badguy
+    LCD.SetBackgroundColor(WHEAT);
+    LCD.Clear();
+    forest_2.Draw(0,0);
+    badguy.Draw(100,150);
+    LCD.WriteAt("These trees need to burn!", 0,0);
+    Sleep(3.0);
+
+    //have the timer go for 30 seconds
+    timeTracker = TimeNow();
+         timer = 30;
+
+    //call the fire spawning function to initially light things on fire
+    /*CODE*/ 
+    //add one to the fire counter for how many times it is spawned
+    fire_counter=1;
+        while (timer > 0)
+        {   
+            //call the putting out fires function so the user can do it during the entirety of the timer
+            /*CODE*/
+            //display the timer which changes every second
+            LCD.SetFontColor(BLACK);
+            LCD.WriteAt(timer,20,220);
+            timer = timer - 1;
+            Sleep(1.0);
+            //clear the area of the screen where the timer is at
+            LCD.SetFontColor(BURLYWOOD);
+            LCD.DrawRectangle(20, 220, 25, 20);
+            LCD.FillRectangle(20,220,25,20);
+            LCD.Update();
+            //spawn fires another two times?
+            if(fire_counter!=3)
+            {//call the spawning fire function
+            /*CODE*/
+            //add one to the fire counter
+            fire_counter++;}
+
+        
+
+        }
+
+    //display messege about the new setting
+    LCD.SetBackgroundColor(WHEAT);
+    LCD.Clear();
+    LCD.SetFontColor(BLACK);
+    LCD.Update();
+    LCD.Write("Good work! that    should hold him off for a little . . . ");
+    Sleep(4.0);
+
+    LCD.SetBackgroundColor(LIGHTBLUE);
+    LCD.Clear();
+    LCD.SetFontColor(BLACK);
+    LCD.Write("Oh no! It's winter now and he's  back! The trees are extra      fragile now, make sure to  click the fires and put  them out!");
+    LCD.Update();
+    Sleep(6.0);
+
+    //go to the new setting
+    LCD.SetBackgroundColor(LIGHTBLUE);
+    LCD.Clear();
+    winter_forest.Draw(0,0);
+    LCD.Update();
+
+    //have the timer go for 20 seconds
+    timeTracker = TimeNow();
+         timer = 20;
+
+    //call the fire spawning function
+    /*CODE*/
+    //set the fire counter back to 1
+    fire_counter=1;
+        while (timer > 0)
+        {   
+            //call the putting out fires function so the user can use it during the timer
+            /*CODE*/
+            //display the timer which changes every second
+            LCD.SetFontColor(BLACK);
+            LCD.WriteAt(timer,20,220);
+            timer = timer - 1;
+            Sleep(1.0);
+            //clear that part of the screen by writing a box over it to display the next number
+            LCD.SetFontColor(WHITE);
+            LCD.DrawRectangle(20, 220, 25, 20);
+            LCD.FillRectangle(20,220,25,20);
+            LCD.Update();
+            //spawn the fires another two time
+            if(fire_counter!=3)
+            {
+                //call the fire spawning function again
+                /*CODE*/
+                //add one to the fire count
+                fire_counter++;
+            }
+        
+
+        }
+
+
+
+}
