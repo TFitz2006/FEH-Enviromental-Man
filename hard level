@@ -1,0 +1,169 @@
+void level_hard()
+{
+    //create all of the necessary variables
+    FEHImage badguy, beach, desert, mountains;
+    int start, fire_counter, timer, timeTracker;
+     
+    //open all of the necessary images
+    badguy.Open("theOfficialBadGuy.png");
+    beach.Open("beach.png");
+    desert.Open("desert.png");
+    mountains.Open("mountains.png");
+
+
+    //set the background and add text to describe the situation
+    LCD.SetBackgroundColor(WHEAT);
+    LCD.Clear();
+    LCD.SetFontColor(BLACK);
+    LCD.Write("You just arrived at one of the last beaches in the  world, it's so pretty     here! These palm trees are one of a kind protect    them before they are lost      forever!");
+    LCD.Update();
+    Sleep(7.0);
+
+    //draw the board 
+    LCD.SetBackgroundColor(LIGHTSKYBLUE);
+    LCD.Clear();
+    beach.Draw(0,0);
+    badguy.Draw(150,140);
+
+    //have the timer go for 20 seconds
+    timeTracker = TimeNow();
+         timer = 20;
+
+    //call the fire spawning function to initially light things on fire
+    /*CODE*/ 
+    //add one to the fire counter for how many times it is spawned
+    fire_counter=1;
+        while (timer > 0)
+        {   
+            //call the putting out fires function so the user can do it during the entirety of the timer
+            /*CODE*/
+            //display the timer which changes every second
+            LCD.SetFontColor(BLACK);
+            LCD.WriteAt(timer,20,220);
+            timer = timer - 1;
+            Sleep(1.0);
+            //clear the area of the screen where the timer is at
+            LCD.SetFontColor(DARKBLUE);
+            LCD.DrawRectangle(20, 220, 25, 20);
+            LCD.FillRectangle(20,220,25,20);
+            LCD.Update();
+            //spawn fires another two times?
+            if(fire_counter!=3)
+            {//call the spawning fire function
+            /*CODE*/
+            //add one to the fire counter
+            fire_counter++;}
+
+        
+
+        } 
+
+    //display encouraging message about the battle
+    LCD.SetBackgroundColor(WHEAT);
+    LCD.Clear();
+    LCD.SetFontColor(SCARLET);
+    LCD.Write("Phew! Good   thing thats over,         hopefully he finally stops  with all of these fires  everywhere!");
+    LCD.Update();
+    Sleep(5.0);
+    LCD.Clear();
+    LCD.Write("What's this?  Now you're in the dessert! Some of these cacti have been alive for hundreds of years. Keep them alive   for hundreds more!");
+    Sleep(8.0);
+    LCD.Update();
+
+    //draw board for second setting
+    LCD.SetBackgroundColor(LIGHTPINK);
+    LCD.Clear();
+    desert.Draw(0,0);
+    badguy.Draw(150,120);
+
+    //set timer for 20 seconds
+    timeTracker = TimeNow();
+         timer = 20;
+
+    //call the fire spawning function to initially light things on fire
+    /*CODE*/ 
+    //add one to the fire counter for how many times it is spawned
+    fire_counter=1;
+        while (timer > 0)
+        {   
+            //call the putting out fires function so the user can do it during the entirety of the timer
+            /*CODE*/
+            //display the timer which changes every second
+            LCD.SetFontColor(BLACK);
+            LCD.WriteAt(timer,20,220);
+            timer = timer - 1;
+            Sleep(1.0);
+            //clear the area of the screen where the timer is at
+            LCD.SetFontColor(BROWN);
+            LCD.DrawRectangle(20, 220, 25, 20);
+            LCD.FillRectangle(20,220,25,20);
+            LCD.Update();
+            //spawn fires another two times?
+            if(fire_counter!=3)
+            {//call the spawning fire function
+            /*CODE*/
+            //add one to the fire counter
+            fire_counter++;}
+
+        
+
+        } 
+
+        //display another messege
+        LCD.SetBackgroundColor(WHEAT);
+        LCD.Clear();
+        LCD.Write("Wow!    you've fought off a lot offires today, it's         important to protect thesebeautiful places in our    environement");
+        Sleep(6.0);
+        LCD.Update();
+        LCD.Clear();
+        LCD.Write("You're in themountains now? Wow, what  an explorer! I wonder     where the monster could be?");
+        Sleep(6.0);
+
+        //draw the last board
+        LCD.SetBackgroundColor(SKYBLUE);
+        LCD.Clear();
+        mountains.Draw(0,0);
+        badguy.Draw(150,100);
+        LCD.SetFontColor(BLACK);
+        LCD.WriteRC("MUAHAHAH",0,0);
+        LCD.WriteRC("This Moutain will burn!!",2,0);
+        LCD.Update();
+        
+        //set timer for 20 seconds
+    timeTracker = TimeNow();
+         timer = 20;
+
+    //call the fire spawning function to initially light things on fire
+    /*CODE*/ 
+    //add one to the fire counter for how many times it is spawned
+    fire_counter=1;
+        while (timer > 0)
+        {   
+            //call the putting out fires function so the user can do it during the entirety of the timer
+            /*CODE*/
+            //display the timer which changes every second
+            LCD.SetFontColor(BLACK);
+            LCD.WriteAt(timer,20,220);
+            timer = timer - 1;
+            Sleep(1.0);
+            //clear the area of the screen where the timer is at
+            LCD.SetFontColor(GRAY);
+            LCD.DrawRectangle(20, 220, 25, 20);
+            LCD.FillRectangle(20,220,25,20);
+            LCD.Update();
+            //spawn fires another two times?
+            if(fire_counter!=3)
+            {//call the spawning fire function
+            /*CODE*/
+            //add one to the fire counter
+            fire_counter++;}
+
+        
+
+        } 
+    //promt the user to play again
+    LCD.SetBackgroundColor(WHEAT);
+    LCD.Clear();
+    LCD.Write("Finished! Press return to go to main menu and play again");
+    LCD.Update();
+}
