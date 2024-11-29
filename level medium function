@@ -79,6 +79,7 @@ void level_medium()
     LCD.SetBackgroundColor(LIGHTBLUE);
     LCD.Clear();
     winter_forest.Draw(0,0);
+    badguy.Draw(150,170);
     LCD.Update();
 
     //have the timer go for 20 seconds
